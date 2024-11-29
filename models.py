@@ -9,7 +9,6 @@ class Task():
 
     def __init__(self, title: str, description: str, category: str, due_date: str, priority: str,  id: int=2):
 
-        print(self._add_id())
         if id < 2:
             self.id = id
         else:
@@ -36,6 +35,9 @@ class Task():
         return id
         
 
+class TaskManager(Task):
+    """Класс управления задачами"""
+    
     def del_task(id_or_category: int|str) -> bool:
         """Метод удаляет задачу из файла tasks.txt по id или категории"""
 

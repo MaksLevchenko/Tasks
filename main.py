@@ -2,7 +2,7 @@ import json
 import os
 
 from logic import add_task, del_task, search_task, edit_task
-from models import Task
+from models import TaskManager
 
 
 # Главная функция программы
@@ -32,7 +32,7 @@ def main():
         elif int(action) == 3:
             search_task()
         elif int(action) == 4:
-            Task.view_tasks()
+            TaskManager.view_tasks()
         elif int(action) == 5:
             edit_task()
 

@@ -1,4 +1,4 @@
-from models import Task
+from models import TaskManager
 
 
 # Добавление задачи
@@ -42,7 +42,7 @@ def add_task() -> bool:
         print('Описание и категория задачи не может быть пустой! Надо начинать сначала!')
         print()
 
-    task = Task(title=title, description=description, category=category, due_date=due_date, priority=priority)
+    task = TaskManager(title=title, description=description, category=category, due_date=due_date, priority=priority)
 
     print()
     print(task.add_task())
@@ -60,7 +60,7 @@ def del_task() -> None:
     # Проверка id, на то, что введённые данные являются числом
     if task_id.isdigit():
 
-        if not Task.del_task(int(task_id)):
+        if not TaskManager.del_task(int(task_id)):
             print()
             print(f'Задачи с id {task_id} нет в нашем списке!')
             print()
@@ -79,7 +79,7 @@ def search_task() -> None:
 
     # Ввод ключевых словх, категории или статуса выполнения задачи
     search = input('Введите слово, категорию или статус выполнения задачи: ').lower()
-    tasks = Task.search_task(search=search)
+    tasks = TaskManager.search_task(search=search)
     if tasks:
         print()
         for task in tasks:
@@ -132,7 +132,7 @@ def edit_task() -> None:
                 print('Новое поле задачи не может быть пустым! Надо начинать сначала!')
                 print()
             
-            Task.edit_task(int(task_id), fields[task_field], new_field)
+            TaskManager.edit_task(int(task_id), fields[task_field], new_field)
                 
         if task_field == 4:
             # Проверка на ввод срока выполнения
@@ -142,11 +142,11 @@ def edit_task() -> None:
                 print()
                 return edit_task()
             else:
-                Task.edit_task(int(task_id), fields[task_field], new_field)
+                TaskManager.edit_task(int(task_id), fields[task_field], new_field)
 
         if task_field == 5:
             if new_field.capitalize() in ['Низкий', 'Средний', 'Высокий']:
-                Task.edit_task(int(task_id), fields[task_field], new_field)
+                TaskManager.edit_task(int(task_id), fields[task_field], new_field)
             
             else:
                 print()
@@ -155,7 +155,7 @@ def edit_task() -> None:
                 return edit_task()
         if task_field == 6:
             if new_field.capitalize() in ['Выполнена', 'Не выполнена']:
-                Task.edit_task(int(task_id), fields[task_field], new_field)
+                TaskManager.edit_task(int(task_id), fields[task_field], new_field)
             
             else:
                 print()
