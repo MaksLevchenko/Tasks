@@ -8,6 +8,11 @@ def add_task() -> bool:
 
     # Ввод названия и срока выполнения новой задачи
     title = input('Введите название задачи, которую хотите добавить: ').capitalize()
+    # Проверка на то, что ввели не пустую строку
+    if not title:
+        print()
+        print('Название задачи не может быть пустой! Надо начинать сначала!')
+        print()
     due_date = input('Введите срок выполнения задачи, которую хотите добавить в формате ГГГГ-ММ-ДД: ')
     
     # Проверка на ввод срока выполнения
@@ -30,6 +35,12 @@ def add_task() -> bool:
     # Ввод описания и категории новой задачи
     description = input('Введите описание задачи, которую хотите добавить: ').capitalize()
     category = input('Введите категорию задачи, которую хотите добавить: ').capitalize()
+
+    # Проверка на то, что ввели не пустую строку
+    if not description and category:
+        print()
+        print('Описание и категория задачи не может быть пустой! Надо начинать сначала!')
+        print()
 
     task = Task(title=title, description=description, category=category, due_date=due_date, priority=priority)
 
@@ -114,6 +125,12 @@ def edit_task() -> None:
         task_field = int(task_field)
         new_field = input('Введите новое значение поля: ')
         if task_field < 4:
+
+            # Проверка на то, что ввели не пустую строку
+            if not new_field:
+                print()
+                print('Новое поле задачи не может быть пустым! Надо начинать сначала!')
+                print()
             
             Task.edit_task(int(task_id), fields[task_field], new_field)
                 
@@ -145,6 +162,7 @@ def edit_task() -> None:
                 print('То что Вы ввели не похоже на статус! Надо начинать сначала!')
                 print()
                 return edit_task()
+        
     else:
         print('То что Вы ввели не похоже на число от 1 до 6!')
         edit_task()
